@@ -10,42 +10,51 @@ There are several ways of editing your application.
 
 **Use Lovable**
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/fef2892a-dce7-40b5-b7d7-2f8c779634ac) and start prompting.
+## Quick Start
 
-Changes made via Lovable will be committed automatically to this repo.
+### Option 1: Open Locally
 
-**Use your preferred IDE**
+1. Clone or download this repository
+2. Open `index.html` in any modern browser
+3. That's it! No build process required.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Option 2: Local Development Server
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+```bash
+# Using Python 3
+python -m http.server 8000
 
-Follow these steps:
+# Using Node.js
+npx serve .
 
+# Using PHP
+php -S localhost:8000
+```
 
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+Then visit `http://localhost:8000`
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## Customization Guide
 
-# Step 3: Install the necessary dependencies.
-npm i
+### 1. Update Your Business Information
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+**In `index.html`, search and replace:**
 
+- `Social Growth Pro` → Your company name
+- `Your City` → Your actual city (lines 416, update JSON-LD schema)
+- `(123) 456-7890` → Your real phone number
+- `info@socialgrowthpro.com` → Your email
 
-**Edit a file directly in GitHub**
+**Update meta tags (lines 6-18):**
+- Title should include your city for local SEO
+- Description should highlight your unique value proposition
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### 2. Customize Pricing
 
-**Use GitHub Codespaces**
+**In `index.html` (lines 110-160):**
+- Update plan names, prices, and features
+- Adjust monthly/yearly pricing in `script.js` (lines 21-30)
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
+### 3. Add Real Testimonials
 - Select the "Codespaces" tab.
 - Click on "New codespace" to launch a new Codespace environment.
 - Edit files directly within the Codespace and commit and push your changes once you're done.
