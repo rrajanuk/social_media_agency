@@ -19,11 +19,14 @@ jobs:
 
       - name: Install + Build
         run: |
+          # Install and build frontend
           npm ci
           npm install --include=dev
           npm run build   # Frontend at root → dist/
+          
+          # Install and build backend (needs devDeps for TypeScript)
           cd backend
-          npm ci --only=production
+          npm ci
           npm run build   # Backend → backend/dist/
 
       - name: Deploy to VPS
@@ -47,6 +50,7 @@ jobs:
             mkdir -p backend/data && chmod 755 backend/data
             rm -rf public && mkdir public && cp -r dist/* public/
             cd backend
+            npm ci --omit=dev
             pm2 restart social-agency-api || pm2 start dist/server.js --name social-agency-api
             pm2 save
             nginx -t && systemctl reload nginx
