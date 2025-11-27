@@ -11,7 +11,7 @@ if (!fs.existsSync(dbDir)) {
 }
 
 // Initialize database with WAL mode for better concurrency
-const db = new Database(dbPath, {
+const db: Database.Database = new Database(dbPath, {
   verbose: process.env.NODE_ENV === 'development' ? console.log : undefined,
 });
 

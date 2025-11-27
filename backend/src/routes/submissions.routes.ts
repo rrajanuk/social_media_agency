@@ -176,10 +176,10 @@ router.post('/', async (req: Request, res: Response) => {
       IdempotencyModel.save(idempotencyKey, JSON.stringify(response));
     }
 
-    res.status(201).json(response.body);
+    return res.status(201).json(response.body);
   } catch (error) {
     console.error('Submission error:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ error: 'Internal server error' });
   }
 });
 
@@ -190,7 +190,7 @@ router.get('/', requireApiKey, async (req: Request, res: Response) => {
     const offset = parseInt(req.query.offset as string) || 0;
 
     const submissions = SubmissionModel.findAll(limit, offset);
-    res.json({
+    return res.json({
       submissions,
       count: submissions.length,
       limit,
@@ -198,7 +198,7 @@ router.get('/', requireApiKey, async (req: Request, res: Response) => {
     });
   } catch (error) {
     console.error('List submissions error:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ error: 'Internal server error' });
   }
 });
 
@@ -211,10 +211,10 @@ router.get('/:id', requireApiKey, async (req: Request, res: Response) => {
       return res.status(404).json({ error: 'Submission not found' });
     }
 
-    res.json(submission);
+    return res.json(submission);
   } catch (error) {
     console.error('Get submission error:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ error: 'Internal server error' });
   }
 });
 
@@ -227,10 +227,10 @@ router.delete('/:id', requireApiKey, async (req: Request, res: Response) => {
       return res.status(404).json({ error: 'Submission not found' });
     }
 
-    res.json({ message: 'Submission deleted successfully' });
+    return res.json({ message: 'Submission deleted successfully' });
   } catch (error) {
     console.error('Delete submission error:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ error: 'Internal server error' });
   }
 });
 
