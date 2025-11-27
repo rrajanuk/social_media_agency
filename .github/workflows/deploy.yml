@@ -18,10 +18,10 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies (Frontend)
-        run: cd frontend && npm ci --only=production
+        run:  npm ci --only=production
 
       - name: Build Frontend
-        run: cd frontend && npm run build
+        run:  npm run build
 
       - name: Install dependencies (Backend)
         run: cd backend && npm ci --only=production
@@ -38,19 +38,19 @@ jobs:
           port: ${{ secrets.VPS_PORT }}
           script: |
             # Stop existing PM2 process if running
-            pm2 stop social-agency-api || true
+            pm2 stop social-media-agency-api || true
             
             # Create backup of current deployment
-            cp -r /var/www/social-agency /var/www/social-agency-backup-$(date +%Y%m%d) || true
+            cp -r /var/www/social-media-agency /var/www/social-media-agency-backup-$(date +%Y%m%d) || true
             
             # Clear previous deployment
-            rm -rf /var/www/social-agency/*
+            rm -rf /var/www/social-media-agency/*
             
             # Note: In a full setup, transfer built files here via rsync or artifacts.
             # For initial testing, assume manual sync; enhance later with scp-action.
             
             # Restart PM2 (assumes code is synced separately)
-            cd /var/www/social-agency/backend && pm2 start dist/server.js --name social-agency-api --env production
+            cd /var/www/social-media-agency/backend && pm2 start dist/server.js --name social-media-agency-api --env production
             pm2 save
             pm2 startup
             
