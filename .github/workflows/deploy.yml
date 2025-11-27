@@ -11,51 +11,43 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup Node.js 20
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
 
-      - name: Install dependencies (Frontend)
-        run:  npm ci --only=production
-
-      - name: Build Frontend
-        run:  npm run build
-
-      - name: Install dependencies (Backend)
-        run: cd backend && npm ci --only=production
-
-      - name: Build Backend
-        run: cd backend && npm run build
+      - name: Install + Build
+        run: |
+          npm ci
+          npm install --include=dev
+          npm run build   # Frontend at root → dist/
+          cd backend
+          npm ci --only=production
+          npm run build   # Backend → backend/dist/
 
       - name: Deploy to VPS
-        uses: appleboy/ssh-action@v1.0.3
+        uses: burnett01/rsync-deployments@7.0.0
         with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: ${{ secrets.VPS_PORT }}
-          script: |
-            # Stop existing PM2 process if running
-            pm2 stop social-media-agency-api || true
-            
-            # Create backup of current deployment
-            cp -r /var/www/social-media-agency /var/www/social-media-agency-backup-$(date +%Y%m%d) || true
-            
-            # Clear previous deployment
-            rm -rf /var/www/social-media-agency/*
-            
-            # Note: In a full setup, transfer built files here via rsync or artifacts.
-            # For initial testing, assume manual sync; enhance later with scp-action.
-            
-            # Restart PM2 (assumes code is synced separately)
-            cd /var/www/social-media-agency/backend && pm2 start dist/server.js --name social-media-agency-api --env production
-            pm2 save
-            pm2 startup
-            
-            # Reload Nginx configuration
-            nginx -t && systemctl reload nginx
+          switches: -avzr --delete --exclude='backend/.env' --exclude='backend/data'
+          path: .
+          remote_path: /var/www/social-media-agency/
+          remote_host: 217.216.48.189
+          remote_user: root
+          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Notify on success
-        run: echo "Deployment completed successfully!"
+      - name: Restart services
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: 217.216.48.189
+          username: root
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /var/www/social-media-agency
+            mkdir -p backend/data && chmod 755 backend/data
+            rm -rf public && mkdir public && cp -r dist/* public/
+            cd backend
+            pm2 restart social-agency-api || pm2 start dist/server.js --name social-agency-api
+            pm2 save
+            nginx -t && systemctl reload nginx
+            echo "Deployed successfully at $(date)"
