@@ -1,15 +1,3 @@
-# Welcome to your Lovable project
-
-## Project info
-
-**URL**: https://lovable.dev/projects/fef2892a-dce7-40b5-b7d7-2f8c779634ac
-
-## How can I edit this code?
-
-There are several ways of editing your application.
-
-**Use Lovable**
-
 ## Quick Start
 
 ### Option 1: Open Locally
@@ -381,17 +369,6 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/fef2892a-dce7-40b5-b7d7-2f8c779634ac) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
 =======
 # robin-rajan-landing-page
 Techy VA Landing Page 

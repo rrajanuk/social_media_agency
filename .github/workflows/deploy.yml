@@ -1,0 +1,61 @@
+name: Deploy to Contabo VPS
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies (Frontend)
+        run: cd frontend && npm ci --only=production
+
+      - name: Build Frontend
+        run: cd frontend && npm run build
+
+      - name: Install dependencies (Backend)
+        run: cd backend && npm ci --only=production
+
+      - name: Build Backend
+        run: cd backend && npm run build
+
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.VPS_PORT }}
+          script: |
+            # Stop existing PM2 process if running
+            pm2 stop social-agency-api || true
+            
+            # Create backup of current deployment
+            cp -r /var/www/social-agency /var/www/social-agency-backup-$(date +%Y%m%d) || true
+            
+            # Clear previous deployment
+            rm -rf /var/www/social-agency/*
+            
+            # Note: In a full setup, transfer built files here via rsync or artifacts.
+            # For initial testing, assume manual sync; enhance later with scp-action.
+            
+            # Restart PM2 (assumes code is synced separately)
+            cd /var/www/social-agency/backend && pm2 start dist/server.js --name social-agency-api --env production
+            pm2 save
+            pm2 startup
+            
+            # Reload Nginx configuration
+            nginx -t && systemctl reload nginx
+
+      - name: Notify on success
+        run: echo "Deployment completed successfully!"
