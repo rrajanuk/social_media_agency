@@ -1,33 +1,92 @@
-// Sticky CTA functionality
+// Sticky CTA and Header functionality
 window.addEventListener('scroll', function() {
   const stickyCta = document.getElementById('sticky-cta');
-  const heroSection = document.querySelector('.gradient-bg');
+  const header = document.querySelector('.header-sticky');
+  const heroSection = document.querySelector('.hero-gradient');
   
-  if (window.scrollY > heroSection.offsetHeight * 0.5) {
+  // Sticky CTA
+  if (heroSection && window.scrollY > heroSection.offsetHeight * 0.5) {
     stickyCta.classList.add('visible');
   } else {
     stickyCta.classList.remove('visible');
   }
+  
+  // Sticky header background
+  if (window.scrollY > 50) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
 });
 
-// Smooth scrolling for anchor links
+// Smooth scroll to sections
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
+    const href = this.getAttribute('href');
+    if (href !== '#' && href.length > 1) {
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
     }
   });
 });
 
-// No pricing toggle needed - simplified pricing structure
+// Audit form submission handler
+document.getElementById('audit-form')?.addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const formData = new FormData(this);
+  const data = Object.fromEntries(formData);
+  
+  // Send to your backend or email service
+  // Example with Formspree: action="https://formspree.io/f/YOUR_ID"
+  // Or custom API endpoint:
+  /*
+  fetch('YOUR_API_ENDPOINT', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  })
+  .then(response => response.json())
+  .then(result => {
+    console.log('Success:', result);
+  });
+  */
+  
+  // Show success message
+  this.innerHTML = `
+    <div class="text-center py-8">
+      <svg class="w-20 h-20 text-green-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>
+      <h3 class="text-2xl font-bold mb-2 text-gray-900">Audit Request Received!</h3>
+      <p class="text-gray-600 mb-4">We'll email your detailed profile audit within 48 hours.</p>
+      <p class="text-sm text-gray-500 mb-6">Check your inbox (and spam folder) for our email.</p>
+      <div class="mt-6">
+        <a href="https://calendar.google.com/calendar/appointments/schedules/YOUR_SCHEDULE_ID" 
+           target="_blank" 
+           rel="noopener"
+           class="inline-block bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white px-8 py-3 rounded-xl font-bold transition shadow-lg hover:shadow-xl">
+          Book a Call While You Wait →
+        </a>
+      </div>
+    </div>
+  `;
+  
+  // Analytics tracking (uncomment when set up)
+  // gtag('event', 'conversion', {'send_to': 'AW-CONVERSION_ID/AUDIT_LABEL'});
+  // fbq('track', 'Lead', {content_name: 'Profile Audit'});
+  
+  console.log('Audit form submitted:', data);
+});
 
 // Contact form submission handler
-document.getElementById('contact-form').addEventListener('submit', function(e) {
+document.getElementById('contact-form')?.addEventListener('submit', function(e) {
   e.preventDefault();
   
   // Get form data
@@ -110,13 +169,27 @@ document.querySelectorAll('details').forEach(detail => {
   });
 });
 
-// Add to cart / CTA tracking
-document.querySelectorAll('a[href="#contact"]').forEach(cta => {
+// CTA click tracking (Google Calendar and Audit buttons)
+document.querySelectorAll('a[href*="calendar.google.com"], a[href="#audit"], a[href="#booking"]').forEach(cta => {
   cta.addEventListener('click', function() {
     // Track CTA clicks for conversion optimization
-    console.log('CTA clicked:', this.textContent);
-    // gtag('event', 'cta_click', {'event_label': this.textContent});
+    const ctaText = this.textContent?.trim() || 'CTA';
+    console.log('CTA clicked:', ctaText);
+    
+    // Analytics (uncomment when set up)
+    // gtag('event', 'cta_click', {
+    //   'event_category': 'engagement',
+    //   'event_label': ctaText
+    // });
   });
 });
 
-console.log('Social Media Management - 100% Done-For-You - Scripts Loaded ✓');
+// Initialize on page load
+window.addEventListener('DOMContentLoaded', function() {
+  console.log('%c🎨 2025 SaaS Landing Page - Loaded', 'color: #7C3AED; font-size: 16px; font-weight: bold');
+  console.log('%c✓ Modern purple gradient design', 'color: #059669; font-size: 12px');
+  console.log('%c✓ Glass-morphism cards active', 'color: #059669; font-size: 12px');
+  console.log('%c✓ Google Calendar integration', 'color: #059669; font-size: 12px');
+  console.log('%c✓ Dual CTA strategy ready', 'color: #059669; font-size: 12px');
+  console.log('%c📝 Update YOUR_SCHEDULE_ID in HTML', 'color: #DC2626; font-size: 12px; font-weight: bold');
+});

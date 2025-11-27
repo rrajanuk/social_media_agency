@@ -3,90 +3,365 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Social Media, 100% Handled — Only 45 Min/Week From You</title>
-  <meta name="description" content="We write, design, schedule, post & reply every day. You only spend up to 45 minutes per week total. No wild promises—just professional social media management for advisors and consultants.">
+  <title>X & LinkedIn — 100% Managed | 45 Min/Week | Real Inbound Leads</title>
+  <meta name="description" content="We write, design, schedule and reply daily — so your profile converts visitors into clients. Trusted by 300+ advisors. Book your free 15-min call or get a free profile audit.">
   
   <!-- Open Graph -->
-  <meta property="og:title" content="Your Social Media, 100% Handled — Only 45 Min/Week From You">
-  <meta property="og:description" content="We write, design, schedule, post & reply every day. You only spend up to 45 minutes per week total sharing ideas.">
+  <meta property="og:title" content="X & LinkedIn — 100% Managed | 45 Min/Week">
+  <meta property="og:description" content="We write, design, schedule and reply daily — so your profile converts visitors into clients.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="/images/og-image.jpg">
   
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Your Social Media, 100% Handled">
-  <meta name="twitter:description" content="We handle everything. You only spend up to 45 minutes per week total sharing ideas.">
+  <meta name="twitter:title" content="X & LinkedIn — 100% Managed">
+  <meta name="twitter:description" content="We write, design, schedule and reply daily. 45 min/week from you.">
   
-  <!-- Tailwind CSS -->
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="alternate icon" href="favicon.svg">
+  <link rel="mask-icon" href="favicon.svg" color="#6B46C1">
+  <link rel="apple-touch-icon" href="apple-touch-icon.svg">
+  
+  <!-- Tailwind CSS with Custom Config -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#6B46C1',
+            'primary-dark': '#553399',
+            'primary-darker': '#442277',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
   <style>
     * { font-family: 'Inter', sans-serif; }
-    body { overflow-x: hidden; }
-    .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-    .sticky-cta { transform: translateY(100%); transition: transform 0.3s ease; }
+    body { overflow-x: hidden; background: #FAFBFC; }
+    
+    /* Better line spacing for readability */
+    p, li, label { line-height: 1.7; }
+    h1, h2, h3, h4, h5, h6 { line-height: 1.2; }
+    
+    /* Modern gradient background */
+    .hero-gradient {
+      background: linear-gradient(135deg, #7C3AED 0%, #6366F1 50%, #8B5CF6 100%);
+      position: relative;
+    }
+    
+    /* Ambient glow effect */
+    .glow-purple {
+      box-shadow: 0 0 60px rgba(124, 58, 237, 0.3);
+    }
+    
+    /* Glass morphism */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    }
+    
+    /* Card hover effects */
+    .card-hover {
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 25px -5px rgba(107, 70, 193, 0.1), 0 10px 10px -5px rgba(107, 70, 193, 0.04);
+    }
+    
+    /* Sticky header */
+    .header-sticky {
+      transition: all 0.3s ease;
+    }
+    .header-sticky.scrolled {
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Sticky mobile CTA */
+    .sticky-cta { 
+      transform: translateY(100%); 
+      transition: transform 0.3s ease; 
+    }
     .sticky-cta.visible { transform: translateY(0); }
     @media (min-width: 768px) { .sticky-cta { display: none; } }
+    
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(4px);
+    }
+    .modal.active { display: flex; }
+    .modal-content {
+      animation: modalSlideIn 0.3s ease-out;
+    }
+    @keyframes modalSlideIn {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    
+    /* Animated gradient text */
+    .gradient-text {
+      background: linear-gradient(135deg, #6B46C1 0%, #9333EA 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    /* Counter animation */
+    @keyframes countUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .counter { animation: countUp 0.6s ease-out; }
+    
+    /* Button pulse effect */
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(107, 70, 193, 0.7); }
+      50% { box-shadow: 0 0 0 10px rgba(107, 70, 193, 0); }
+    }
+    .btn-pulse { animation: pulse 2s infinite; }
+    
+    /* Smooth scroll */
+    html { scroll-behavior: smooth; }
+    
+    /* Focus states */
+    *:focus-visible {
+      outline: 2px solid #6B46C1;
+      outline-offset: 2px;
+    }
   </style>
 </head>
-<body class="antialiased">
+<body class="antialiased bg-white text-gray-900">
 
-<!-- Hero Section -->
-<section class="gradient-bg text-white py-16 px-4 md:py-24">
-  <div class="max-w-6xl mx-auto text-center">
-    <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">Your Social Media, 100% Handled — Without Eating Your Week</h1>
-    <p class="text-xl md:text-2xl mb-8 opacity-95 max-w-4xl mx-auto">We write, design, schedule, post, and reply every day. You only spend up to 45 minutes per week total (voice notes, quick messages, or calls — however you prefer).</p>
-    
-    <div class="space-y-3 mb-8 text-left max-w-2xl mx-auto">
-      <div class="flex items-start gap-3">
-        <svg class="w-6 h-6 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-        <span class="text-lg">Daily or near-daily posting across your chosen platforms</span>
+<!-- Sticky Header -->
+<header class="header-sticky fixed top-0 left-0 right-0 z-50 py-4 px-6 bg-white/80 backdrop-blur-xl border-b border-gray-100">
+  <div class="max-w-7xl mx-auto flex justify-between items-center">
+    <!-- Logo - White version on colored backgrounds -->
+    <div class="flex items-center gap-2">
+      <div class="w-10 h-10 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-xl flex items-center justify-center">
+        <span class="text-white font-bold text-xl">SG</span>
       </div>
-      <div class="flex items-start gap-3">
-        <svg class="w-6 h-6 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-        <span class="text-lg">All content creation, graphics, scheduling & replies done for you</span>
-      </div>
-      <div class="flex items-start gap-3">
-        <svg class="w-6 h-6 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-        <span class="text-lg">Flexible ideation: max 45 min/week total, spread however works for you</span>
-      </div>
-      <div class="flex items-start gap-3">
-        <svg class="w-6 h-6 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-        <span class="text-lg">Your profiles stay professional and active 365 days a year</span>
-      </div>
+      <span class="text-xl font-bold text-gray-900">SocialGrowth</span>
     </div>
     
-    <a href="#contact" class="inline-block bg-white text-purple-700 px-8 py-4 rounded-lg text-lg font-semibold hover:scale-105 transition-transform shadow-xl mb-3">Book Your Free 15-Minute Intro Call</a>
-    <p class="text-sm opacity-90">No pressure • No credit card • Just see how it works</p>
+    <div class="flex items-center gap-3">
+      <a href="#audit" class="hidden md:inline-block text-gray-700 hover:text-purple-600 font-medium transition">Free Audit</a>
+      <a href="https://calendar.google.com/calendar/appointments/schedules/YOUR_SCHEDULE_ID" target="_blank" rel="noopener" class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2.5 rounded-xl font-semibold transition shadow-lg hover:shadow-xl glow-purple">
+        Book Call
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- Hero Section - Clean & Minimal 2025 Style -->
+<section class="hero-gradient text-white pt-28 pb-32 px-4 md:px-6 relative overflow-hidden">
+  <!-- Ambient gradient orbs -->
+  <div class="absolute inset-0 opacity-20">
+    <div class="absolute top-20 -left-20 w-96 h-96 bg-purple-300 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 right-0 w-[600px] h-[600px] bg-indigo-400 rounded-full blur-3xl"></div>
+  </div>
+  
+  <div class="max-w-5xl mx-auto relative z-10">
+    <div class="text-center max-w-3xl mx-auto">
+      <!-- Main Headline - Simplified -->
+      <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-[1.5] tracking-tight">
+        X & LinkedIn <br/>100% Managed.
+      </h1>
+      <div class="text-3xl md:text-4xl font-semibold mb-8 text-purple-100">
+        45 min/week. Real inbound leads.
+      </div>
+      
+      <!-- Subheadline -->
+      <p class="text-lg md:text-xl mb-12 opacity-90 leading-relaxed max-w-2xl mx-auto">
+        We write, design, schedule and reply daily — so your profile converts visitors into clients.
+      </p>
+      
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-10">
+        <a href="https://calendar.google.com/calendar/appointments/schedules/YOUR_SCHEDULE_ID" 
+           target="_blank" 
+           rel="noopener"
+           class="group bg-white text-purple-600 px-8 py-4 rounded-2xl text-lg font-bold hover:scale-105 transition-all shadow-2xl inline-flex items-center justify-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          Book 15-Min Call
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#audit" 
+           class="bg-white/10 backdrop-blur-md border-2 border-white/20 text-white px-8 py-4 rounded-2xl text-lg font-bold hover:bg-white/20 transition shadow-xl inline-flex items-center justify-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          Get Free Audit
+        </a>
+      </div>
+      
+      <!-- Social Proof Strip - Inline -->
+      <div class="text-sm opacity-75 flex flex-wrap justify-center gap-4 items-center mb-8">
+        <span>Trusted by 300+ advisors</span>
+        <span class="hidden sm:inline">•</span>
+        <span>Avg 4.9★</span>
+        <span class="hidden sm:inline">•</span>
+        <span>3× LinkedIn reach (avg)</span>
+      </div>
+      
+      <!-- Quick Chat Buttons -->
+      <div class="flex justify-center gap-4 items-center pt-4">
+        <span class="text-sm opacity-75">Quick chat:</span>
+        <a href="https://wa.me/1234567890" target="_blank" rel="noopener" class="bg-white/10 backdrop-blur-md hover:bg-white/20 p-3 rounded-xl transition inline-flex items-center gap-2 border border-white/20" aria-label="Chat on WhatsApp">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          <span class="text-sm font-medium">WhatsApp</span>
+        </a>
+        <a href="https://t.me/YOUR_TELEGRAM_USERNAME" target="_blank" rel="noopener" class="bg-white/10 backdrop-blur-md hover:bg-white/20 p-3 rounded-xl transition inline-flex items-center gap-2 border border-white/20" aria-label="Chat on Telegram">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.693-1.653-1.124-2.678-1.8-1.185-.781-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.329-.913.489-1.302.481-.428-.008-1.252-.241-1.865-.44-.752-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635.099-.002.321.023.465.14.121.098.155.23.171.324.016.093.036.306.02.472z"/>
+          </svg>
+          <span class="text-sm font-medium">Telegram</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Free Profile Audit Section - Glass Card -->
+<section id="audit" class="py-20 px-4 bg-gradient-to-b from-gray-50 to-white">
+  <div class="max-w-2xl mx-auto">
+    <div class="text-center mb-10">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
+        Get Your Free <span class="bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">Profile Audit</span>
+      </h2>
+      <p class="text-lg text-gray-600">
+        We'll analyze your LinkedIn or X profile and send you a detailed PDF with actionable recommendations.
+      </p>
+    </div>
     
-    <div class="mt-12 flex flex-wrap justify-center gap-8 items-center opacity-80">
-      <div class="text-sm">TRUSTED BY PROFESSIONALS AT:</div>
-      <div class="bg-white/20 px-6 py-3 rounded">Morgan Stanley</div>
-      <div class="bg-white/20 px-6 py-3 rounded">Goldman Sachs</div>
-      <div class="bg-white/20 px-6 py-3 rounded">J.P. Morgan</div>
+    <!-- Glass Morphism Card -->
+    <div class="glass-card rounded-3xl p-8 md:p-10">
+      <form id="audit-form" class="space-y-5">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Your Name</label>
+          <input 
+            type="text" 
+            name="name" 
+            required 
+            class="w-full px-4 py-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition bg-white/50"
+            placeholder="John Smith"
+          >
+        </div>
+        
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+          <input 
+            type="email" 
+            name="email" 
+            required 
+            class="w-full px-4 py-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition bg-white/50"
+            placeholder="john@company.com"
+          >
+        </div>
+        
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">LinkedIn Profile URL</label>
+          <input 
+            type="url" 
+            name="linkedin_url" 
+            class="w-full px-4 py-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition bg-white/50"
+            placeholder="https://linkedin.com/in/yourprofile"
+          >
+        </div>
+        
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">X (Twitter) Handle</label>
+          <input 
+            type="text" 
+            name="x_handle" 
+            class="w-full px-4 py-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition bg-white/50"
+            placeholder="@yourhandle"
+          >
+        </div>
+        
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Choose How Many Platforms You Want 100% Managed</label>
+          <select 
+            name="platforms" 
+            required 
+            class="w-full px-4 py-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition bg-white/50"
+          >
+            <option value="">Select platforms</option>
+            <option value="1">One Platform (LinkedIn or X)</option>
+            <option value="2">Two Platforms (LinkedIn + X)</option>
+            <option value="3">Three Platforms (LinkedIn + X + Instagram)</option>
+          </select>
+        </div>
+        
+        <button 
+          type="submit" 
+          class="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white py-4 rounded-xl font-bold text-lg transition shadow-lg hover:shadow-xl glow-purple">
+          Get My Free Audit
+        </button>
+        
+        <p class="text-sm text-gray-500 text-center leading-relaxed">
+          We'll email your audit within 48 hours • No credit card required
+        </p>
+        <input type="text" name="hp_field" style="display:none" tabindex="-1" autocomplete="off">
+        <div id="audit-form-message" class="mt-4 text-center"></div>
+      </form>
     </div>
   </div>
 </section>
 
 <!-- Problem → Solution -->
-<section class="py-16 px-4 bg-gray-50">
+<section class="py-20 px-4 bg-gradient-to-b from-white to-gray-50">
   <div class="max-w-6xl mx-auto">
-    <div class="grid md:grid-cols-2 gap-12">
-      <div>
-        <h2 class="text-3xl font-bold mb-6 text-gray-900">The Reality Most Advisors Face</h2>
-        <div class="space-y-4 text-gray-700">
-          <p class="text-lg">You know LinkedIn and Instagram should be working for you, but they sit silent because you simply don't have time.</p>
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div class="space-y-6">
+        <div class="inline-block px-4 py-2 bg-red-50 text-red-600 rounded-full text-sm font-semibold">The Problem</div>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900">The Reality Most Advisors Face</h2>
+        <div class="space-y-4 text-gray-600 text-lg">
+          <div class="flex items-start gap-3">
+            <svg class="w-6 h-6 text-red-500 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>
+            <p>LinkedIn and Instagram sit silent</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="w-6 h-6 text-red-500 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>
+            <p>No time to post consistently</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="w-6 h-6 text-red-500 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>
+            <p>Losing clients to active competitors</p>
+          </div>
         </div>
       </div>
-      <div>
-        <h2 class="text-3xl font-bold mb-6 text-gray-900">What We Actually Do (and nothing more)</h2>
-        <div class="space-y-4 text-gray-700">
-          <p class="text-lg">Every week you spend up to 45 minutes total sharing what's on your mind — via quick calls, voice notes, or messages. That's literally all we ever need from you.</p>
-          <p class="text-lg">We take it from there: write the posts, create graphics, schedule everything, reply to comments and DMs, and keep your profiles alive and professional.</p>
-          <p class="text-lg font-semibold text-gray-900">No wild lead guarantees. Just the peace of mind that your social presence is finally handled.</p>
+      <div class="space-y-6">
+        <div class="inline-block px-4 py-2 bg-green-50 text-green-600 rounded-full text-sm font-semibold">The Solution</div>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900">What We Actually Do <span class="text-gray-500">(and nothing more)</span></h2>
+        <div class="space-y-4 text-gray-600 text-lg">
+          <p>Every week you spend <span class="font-bold text-primary">up to 45 minutes total</span> sharing what's on your mind — via quick calls, voice notes, or messages.</p>
+          <p>We take it from there: write the posts, create graphics, schedule everything, reply to comments and DMs, and keep your profiles alive and professional.</p>
+          <div class="bg-primary/5 border-l-4 border-primary p-4 rounded">
+            <p class="font-semibold text-gray-900">No wild lead guarantees. Just the peace of mind that your social presence is finally handled.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -94,61 +369,121 @@
 </section>
 
 <!-- Services & Pricing -->
-<section id="pricing" class="py-16 px-4">
-  <div class="max-w-6xl mx-auto">
-    <h2 class="text-4xl font-bold text-center mb-4">Choose How Many Platforms You Want 100% Managed</h2>
-    <p class="text-center text-gray-600 mb-12 text-lg max-w-3xl mx-auto">All plans include 100% done-for-you execution • Cancel or pause anytime • 30-day satisfaction guarantee</p>
+<section id="pricing" class="py-20 px-4 bg-white">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">Choose How Many Platforms You Want <span class="gradient-text">100% Managed</span></h2>
+      <p class="text-gray-600 text-lg max-w-3xl mx-auto">All plans include 100% done-for-you execution • Cancel or pause anytime • 30-day satisfaction guarantee</p>
+    </div>
     
     <div class="grid md:grid-cols-3 gap-8">
       <!-- Single Platform -->
-      <div class="border-2 border-gray-200 rounded-xl p-8 bg-white hover:shadow-xl transition-shadow">
-        <h3 class="text-2xl font-bold mb-2">Single Platform</h3>
-        <div class="mb-4">
-          <span class="text-4xl font-bold">$899</span>
-          <span class="text-gray-600">/month</span>
+      <div class="card-hover border-2 border-gray-200 rounded-2xl p-8 bg-white">
+        <div class="mb-6">
+          <h3 class="text-2xl font-bold mb-2">Single Platform</h3>
+          <p class="text-sm text-gray-500">Great for LinkedIn-only</p>
         </div>
-        <p class="text-sm text-gray-600 mb-6">Great for LinkedIn-only</p>
-        <ul class="space-y-3 mb-8">
-          <li class="flex gap-2"><svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> <span>Up to 20 high-quality posts per month</span></li>
-          <li class="flex gap-2"><svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> <span>All writing, graphics, scheduling & replies done-for-you</span></li>
-          <li class="flex gap-2"><svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> <span>Max 45 min/week total ideation (however you prefer)</span></li>
-          <li class="flex gap-2"><svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> <span>Monthly summary report</span></li>
+        <div class="mb-6">
+          <div class="flex items-baseline gap-2">
+            <span class="text-5xl font-bold text-gray-900">$899</span>
+            <span class="text-gray-500">/month</span>
+          </div>
+        </div>
+        <ul class="space-y-4 mb-8">
+          <li class="flex gap-3">
+            <svg class="w-5 h-5 text-primary mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <span class="text-gray-600">Up to 20 high-quality posts/month</span>
+          </li>
+          <li class="flex gap-3">
+            <svg class="w-5 h-5 text-primary mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <span class="text-gray-600">All writing, graphics, scheduling & replies</span>
+          </li>
+          <li class="flex gap-3">
+            <svg class="w-5 h-5 text-primary mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <span class="text-gray-600">Max 45 min/week from you</span>
+          </li>
+          <li class="flex gap-3">
+            <svg class="w-5 h-5 text-primary mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <span class="text-gray-600">Monthly summary report</span>
+          </li>
         </ul>
-        <a href="#contact" class="block text-center bg-gray-900 text-white py-3 rounded-lg font-semibold hover:bg-gray-800 transition">Get Started</a>
+        <a href="#calendly" class="block text-center bg-gray-900 hover:bg-gray-800 text-white py-4 rounded-xl font-bold transition">Get Started</a>
       </div>
       
       <!-- Two Platforms (Most Popular) -->
-      <div class="border-4 border-purple-600 rounded-xl p-8 bg-white shadow-2xl relative transform md:scale-105">
-        <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-purple-600 text-white px-4 py-1 rounded-full text-sm font-semibold">MOST POPULAR</div>
-        <h3 class="text-2xl font-bold mb-2">Two Platforms</h3>
-        <div class="mb-4">
-          <span class="text-4xl font-bold">$1,499</span>
-          <span class="text-gray-600">/month</span>
+      <div class="card-hover border-4 border-primary rounded-2xl p-8 bg-gradient-to-br from-white to-purple-50 shadow-2xl relative transform md:scale-105">
+        <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary to-primary-dark text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg">
+          ⭐ MOST POPULAR
         </div>
-        <p class="text-sm text-gray-600 mb-6">LinkedIn + Instagram/X</p>
-        <ul class="space-y-3 mb-8">
-          <li class="flex gap-2"><svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> <span>Up to 40 total posts per month across both</span></li>
-          <li class="flex gap-2"><svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> <span>Everything in Single + cross-platform content strategy</span></li>
-          <li class="flex gap-2"><svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> <span>Same 45 min/week flexible ideation</span></li>
-          <li class="flex gap-2"><svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> <span>Profile refresh every 90 days</span></li>
+        <div class="mb-6">
+          <h3 class="text-2xl font-bold mb-2 text-primary">Two Platforms</h3>
+          <p class="text-sm text-gray-600">LinkedIn + Instagram/X</p>
+        </div>
+        <div class="mb-6">
+          <div class="flex items-baseline gap-2">
+            <span class="text-5xl font-bold text-gray-900">$1,499</span>
+            <span class="text-gray-500">/month</span>
+          </div>
+        </div>
+        <ul class="space-y-4 mb-8">
+          <li class="flex gap-3">
+            <svg class="w-5 h-5 text-primary mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <span class="text-gray-700 font-medium">Up to 40 posts/month across both</span>
+          </li>
+          <li class="flex gap-3">
+            <svg class="w-5 h-5 text-primary mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <span class="text-gray-700 font-medium">Cross-platform content strategy</span>
+          </li>
+          <li class="flex gap-3">
+            <svg class="w-5 h-5 text-primary mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <span class="text-gray-700 font-medium">Same 45 min/week from you</span>
+          </li>
+          <li class="flex gap-3">
+            <svg class="w-5 h-5 text-primary mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <span class="text-gray-700 font-medium">Profile refresh every 90 days</span>
+          </li>
+          <li class="flex gap-3">
+            <svg class="w-5 h-5 text-primary mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <span class="text-gray-700 font-medium">Post boosting service (budget-based)</span>
+          </li>
         </ul>
-        <a href="#contact" class="block text-center bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition">Get Started</a>
+        <a href="#calendly" class="block text-center bg-primary hover:bg-primary-dark text-white py-4 rounded-xl font-bold transition shadow-lg">Get Started</a>
       </div>
       
       <!-- Three or More Platforms -->
-      <div class="border-2 border-gray-200 rounded-xl p-8 bg-white hover:shadow-xl transition-shadow">
-        <h3 class="text-2xl font-bold mb-2">Three or More Platforms</h3>
-        <div class="mb-4">
-          <span class="text-4xl font-bold">Custom</span>
+      <div class="card-hover border-2 border-gray-200 rounded-2xl p-8 bg-white">
+        <div class="mb-6">
+          <h3 class="text-2xl font-bold mb-2">Three+ Platforms</h3>
+          <p class="text-sm text-gray-500">Tailored to your needs</p>
         </div>
-        <p class="text-sm text-gray-600 mb-6">Tailored to your needs</p>
-        <ul class="space-y-3 mb-8">
-          <li class="flex gap-2"><svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> <span>LinkedIn, Instagram, X, Facebook, YouTube, etc.</span></li>
-          <li class="flex gap-2"><svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> <span>Everything in Two Platforms</span></li>
-          <li class="flex gap-2"><svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> <span>Same 45 min/week flexible ideation</span></li>
-          <li class="flex gap-2"><svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> <span>Priority support</span></li>
+        <div class="mb-6">
+          <div class="flex items-baseline gap-2">
+            <span class="text-5xl font-bold text-gray-900">Custom</span>
+          </div>
+        </div>
+        <ul class="space-y-4 mb-8">
+          <li class="flex gap-3">
+            <svg class="w-5 h-5 text-primary mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <span class="text-gray-600">All major platforms included</span>
+          </li>
+          <li class="flex gap-3">
+            <svg class="w-5 h-5 text-primary mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <span class="text-gray-600">Everything in Two Platforms</span>
+          </li>
+          <li class="flex gap-3">
+            <svg class="w-5 h-5 text-primary mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <span class="text-gray-600">Same 45 min/week from you</span>
+          </li>
+          <li class="flex gap-3">
+            <svg class="w-5 h-5 text-primary mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <span class="text-gray-600">Post boosting service (budget-based)</span>
+          </li>
+          <li class="flex gap-3">
+            <svg class="w-5 h-5 text-primary mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <span class="text-gray-600">Priority support</span>
+          </li>
         </ul>
-        <a href="#contact" class="block text-center bg-gray-900 text-white py-3 rounded-lg font-semibold hover:bg-gray-800 transition">Contact Us</a>
+        <a href="#calendly" class="block text-center bg-gray-900 hover:bg-gray-800 text-white py-4 rounded-xl font-bold transition">Contact Us</a>
       </div>
     </div>
   </div>
@@ -219,7 +554,7 @@
         </div>
         <p class="text-gray-700 mb-4">"Went from crickets to qualified leads in 60 days. My LinkedIn is now my #1 lead source."</p>
         <div class="flex items-center gap-3">
-          <div class="w-12 h-12 bg-gray-300 rounded-full"></div>
+          <img src="https://ui-avatars.com/api/?name=Michael+Chen&background=6B46C1&color=fff&size=128&font-size=0.5&bold=true" alt="Michael Chen" class="w-12 h-12 rounded-full shadow-md">
           <div>
             <div class="font-semibold">Michael Chen</div>
             <div class="text-sm text-gray-600">Wealth Advisor, Merrill Lynch</div>
@@ -237,7 +572,7 @@
         </div>
         <p class="text-gray-700 mb-4">"Finally, social media that doesn't feel like a chore. They understand our industry perfectly."</p>
         <div class="flex items-center gap-3">
-          <div class="w-12 h-12 bg-gray-300 rounded-full"></div>
+          <img src="https://ui-avatars.com/api/?name=Sarah+Williams&background=8B5CF6&color=fff&size=128&font-size=0.5&bold=true" alt="Sarah Williams" class="w-12 h-12 rounded-full shadow-md">
           <div>
             <div class="font-semibold">Sarah Williams</div>
             <div class="text-sm text-gray-600">CEO, Williams Consulting</div>
@@ -255,7 +590,7 @@
         </div>
         <p class="text-gray-700 mb-4">"ROI is incredible. Closed 3 major clients from Instagram alone this quarter."</p>
         <div class="flex items-center gap-3">
-          <div class="w-12 h-12 bg-gray-300 rounded-full"></div>
+          <img src="https://ui-avatars.com/api/?name=David+Rodriguez&background=6366F1&color=fff&size=128&font-size=0.5&bold=true" alt="David Rodriguez" class="w-12 h-12 rounded-full shadow-md">
           <div>
             <div class="font-semibold">David Rodriguez</div>
             <div class="text-sm text-gray-600">Financial Planner, Independent</div>
@@ -309,87 +644,262 @@
   </div>
 </section>
 
-<!-- Final CTA -->
-<section id="contact" class="py-16 px-4 gradient-bg text-white">
-  <div class="max-w-4xl mx-auto text-center">
-    <h2 class="text-4xl md:text-5xl font-bold mb-6">Ready for Consistent Social Without the Hassle?</h2>
-    <p class="text-xl mb-8">Book a free 15-minute call and see the exact process. If it's not for you, no hard feelings.</p>
-    
-    <div class="bg-white rounded-xl p-8 text-gray-900 max-w-md mx-auto">
-      <form id="contact-form" class="space-y-4">
-        <input type="text" name="name" placeholder="Your Name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent">
-        <input type="email" name="email" placeholder="Email Address" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent">
-        <input type="tel" name="phone" placeholder="Phone Number" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent">
-        <select name="industry" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent">
-          <option value="">Select Your Industry</option>
-          <option value="wealth">Wealth Management</option>
-          <option value="finance">Financial Planning</option>
-          <option value="consulting">Business Consulting</option>
-          <option value="other">Other</option>
-        </select>
-        <button type="submit" class="w-full bg-purple-600 text-white py-4 rounded-lg font-semibold text-lg hover:bg-purple-700 transition">Book Your Free 15-Minute Intro Call</button>
-      </form>
-      <p class="text-sm text-gray-500 mt-4">No pressure • No credit card • Just see how it works</p>
+<!-- Get In Touch / Contact Section -->
+<section id="contact" class="py-20 px-4 bg-white border-t-4 border-purple-100">
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-12">
+      <!-- Icon -->
+      <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+        <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+        </svg>
+      </div>
+      <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
+        Have Questions? <span class="bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">Let's Talk</span>
+      </h2>
+      <p class="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
+        Not ready to book a call yet? No problem. Send us a message and we'll get back to you within 24 hours with answers to all your questions.
+      </p>
     </div>
     
-    <div class="mt-8">
-      <p class="text-lg mb-2">Or call/text anytime:</p>
-      <a href="tel:+1234567890" class="text-2xl font-semibold hover:underline">(123) 456-7890</a>
+    <!-- Glass Morphism Contact Card -->
+    <div class="glass-card rounded-3xl p-8 md:p-10 max-w-2xl mx-auto shadow-xl border border-purple-100">
+      <h3 class="text-2xl font-bold mb-6 text-center text-gray-900">Send Us a Message</h3>
+      <form id="contact-form" class="space-y-5">
+        <div>
+          <input 
+            type="text" 
+            name="name" 
+            placeholder="Your Name" 
+            required 
+            class="w-full px-4 py-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition bg-white/50"
+          >
+        </div>
+        <div>
+          <input 
+            type="email" 
+            name="email" 
+            placeholder="Email Address" 
+            required 
+            class="w-full px-4 py-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition bg-white/50"
+          >
+        </div>
+        <div>
+          <input 
+            type="tel" 
+            name="phone" 
+            placeholder="Phone Number (Optional)" 
+            class="w-full px-4 py-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition bg-white/50"
+          >
+        </div>
+        <div>
+          <textarea 
+            name="message" 
+            placeholder="What would you like to know?" 
+            rows="4" 
+            required 
+            class="w-full px-4 py-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition bg-white/50 resize-none"
+          ></textarea>
+        </div>
+        <button 
+          type="submit" 
+          class="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white py-4 rounded-xl font-bold text-lg transition shadow-lg hover:shadow-xl glow-purple"
+        >
+          Send Message
+        </button>
+      </form>
+      <p class="text-sm text-gray-500 text-center mt-6 leading-relaxed">
+        We'll respond within 24 hours • Or book a call directly for faster answers
+      </p>
+    </div>
+    
+    <!-- Alternative Contact Methods -->
+    <div class="mt-12 text-center">
+      <p class="text-gray-600 mb-4">Prefer to talk now?</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="tel:+1234567890" class="inline-flex items-center gap-2 bg-white border-2 border-purple-200 text-purple-600 px-6 py-3 rounded-xl font-semibold hover:bg-purple-50 transition">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+          </svg>
+          (123) 456-7890
+        </a>
+        <a href="#booking" class="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-3 rounded-xl font-semibold hover:from-purple-700 hover:to-indigo-700 transition shadow-lg">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+          Book 15-Min Call
+        </a>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- Footer -->
-<footer class="bg-gray-900 text-white py-12 px-4">
-  <div class="max-w-6xl mx-auto">
-    <div class="grid md:grid-cols-4 gap-8 mb-8">
-      <div>
-        <h3 class="font-bold text-xl mb-4">Social Growth Pro</h3>
-        <p class="text-gray-400">Premium social media management for professionals who demand results.</p>
-      </div>
-      <div>
-        <h4 class="font-semibold mb-4">Services</h4>
-        <ul class="space-y-2 text-gray-400">
-          <li><a href="#pricing" class="hover:text-white">Pricing</a></li>
-          <li><a href="#faq" class="hover:text-white">FAQ</a></li>
-          <li><a href="#contact" class="hover:text-white">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-semibold mb-4">Company</h4>
-        <ul class="space-y-2 text-gray-400">
-          <li><a href="#" class="hover:text-white">About Us</a></li>
-          <li><a href="#" class="hover:text-white">Case Studies</a></li>
-          <li><a href="#" class="hover:text-white">Blog</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-semibold mb-4">Connect</h4>
-        <div class="flex gap-4 mb-4">
-          <a href="#" class="hover:text-purple-400">LinkedIn</a>
-          <a href="#" class="hover:text-purple-400">Instagram</a>
-          <a href="#" class="hover:text-purple-400">Twitter</a>
+<!-- Section Divider -->
+<div class="h-1 bg-gradient-to-r from-transparent via-purple-300 to-transparent"></div>
+
+<!-- Book Your Call Section - Google Calendar -->
+<section id="booking" class="py-24 px-4 bg-gradient-to-br from-purple-600 via-indigo-600 to-purple-700 relative overflow-hidden">
+  <!-- Decorative elements -->
+  <div class="absolute inset-0 opacity-10">
+    <div class="absolute top-0 left-1/4 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-300 rounded-full blur-3xl"></div>
+  </div>
+  <div class="max-w-3xl mx-auto text-center relative z-10">
+    <div class="mb-10">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white">
+        Book Your Free <span class="text-yellow-300">15-Minute Intro Call</span>
+      </h2>
+      <p class="text-lg text-purple-100 max-w-2xl mx-auto">
+        See exactly how we'll manage your social media — no pressure, no sales pitch. Just a friendly chat to see if we're a fit.
+      </p>
+    </div>
+    
+    <!-- CTA Card -->
+    <div class="bg-white rounded-3xl p-10 md:p-12 max-w-xl mx-auto shadow-2xl border-4 border-purple-300/30">
+      <div class="mb-6">
+        <div class="w-20 h-20 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+          <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
         </div>
-        <p class="text-gray-400 text-sm">info@socialgrowthpro.com</p>
+        <h3 class="text-2xl font-bold mb-2">Choose Your Time</h3>
+        <p class="text-gray-600">Pick a slot that works for you — it only takes 15 minutes.</p>
+      </div>
+      
+      <a href="https://calendar.google.com/calendar/appointments/schedules/YOUR_SCHEDULE_ID" 
+         target="_blank" 
+         rel="noopener"
+         class="group inline-flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white px-10 py-5 rounded-2xl text-xl font-bold transition-all shadow-lg hover:shadow-2xl glow-purple hover:scale-105">
+        Open Calendar
+        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+      </a>
+      
+      <div class="mt-8 pt-8 border-t border-gray-200">
+        <p class="text-sm text-gray-600 mb-3">Can't find a time?</p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="tel:+1234567890" class="text-purple-600 hover:text-purple-700 font-semibold inline-flex items-center gap-2">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+            </svg>
+            (123) 456-7890
+          </a>
+          <span class="text-gray-300">|</span>
+          <a href="https://wa.me/1234567890" target="_blank" class="text-purple-600 hover:text-purple-700 font-semibold inline-flex items-center gap-2">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            WhatsApp
+          </a>
+        </div>
       </div>
     </div>
-    <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-400 text-sm">
-      <p>&copy; 2025 Social Growth Pro. All rights reserved.</p>
+  </div>
+</section>
+
+<!-- Footer - Clean & Minimal -->
+<footer class="bg-gradient-to-b from-gray-900 to-black text-white py-16 px-4">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid md:grid-cols-3 gap-12 mb-12">
+      <!-- Brand -->
+      <div>
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-10 h-10 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-xl flex items-center justify-center">
+            <span class="text-white font-bold text-xl">SG</span>
+          </div>
+          <span class="text-xl font-bold">SocialGrowth</span>
+        </div>
+        <p class="text-gray-400 leading-relaxed">
+          Premium social media management for financial advisors and consultants.
+        </p>
+      </div>
+      
+      <!-- Quick Links -->
+      <div>
+        <h4 class="font-semibold mb-4 text-lg">Quick Links</h4>
+        <ul class="space-y-3 text-gray-400">
+          <li><a href="#audit" class="hover:text-purple-400 transition">Free Audit</a></li>
+          <li><a href="#booking" class="hover:text-purple-400 transition">Book a Call</a></li>
+          <li><a href="#pricing" class="hover:text-purple-400 transition">Pricing</a></li>
+          <li><a href="#faq" class="hover:text-purple-400 transition">FAQ</a></li>
+        </ul>
+      </div>
+      
+      <!-- Contact -->
+      <div>
+        <h4 class="font-semibold mb-4 text-lg">Get In Touch</h4>
+        <ul class="space-y-3 text-gray-400">
+          <li>
+            <a href="mailto:info@socialgrowth.com" class="hover:text-purple-400 transition">
+              info@socialgrowth.com
+            </a>
+          </li>
+          <li>
+            <a href="tel:+1234567890" class="hover:text-purple-400 transition">
+              (123) 456-7890
+            </a>
+          </li>
+          <li class="flex gap-4 pt-2">
+            <a href="#" class="hover:text-purple-400 transition">LinkedIn</a>
+            <a href="#" class="hover:text-purple-400 transition">X</a>
+            <a href="#" class="hover:text-purple-400 transition">Instagram</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500 text-sm">
+      <p>&copy; 2025 SocialGrowth. All rights reserved.</p>
       <div class="flex gap-6">
-        <a href="#" class="hover:text-white">Privacy Policy</a>
-        <a href="#" class="hover:text-white">Terms of Service</a>
+        <a href="#" id="open-privacy-policy" class="hover:text-white transition">Privacy Policy</a>
+        <a href="#" id="open-terms-of-service" class="hover:text-white transition">Terms of Service</a>
       </div>
     </div>
   </div>
 </footer>
 
 <!-- Sticky Mobile CTA -->
-<div id="sticky-cta" class="sticky-cta fixed bottom-0 left-0 right-0 bg-purple-600 text-white p-4 shadow-2xl z-50">
+<div id="sticky-cta" class="sticky-cta fixed bottom-0 left-0 right-0 bg-gradient-to-r from-purple-600 to-indigo-600 text-white p-4 shadow-2xl z-50">
   <div class="max-w-6xl mx-auto flex justify-between items-center gap-3">
-    <span class="font-semibold text-sm md:text-base">100% handled. 45 min/week max.</span>
-    <a href="#contact" class="bg-white text-purple-600 px-4 md:px-6 py-2 rounded-lg font-semibold hover:scale-105 transition-transform text-sm md:text-base whitespace-nowrap">Book 15-Min Call</a>
+    <span class="font-semibold text-sm md:text-base">100% handled. 45 min/week.</span>
+    <a href="https://calendar.google.com/calendar/appointments/schedules/YOUR_SCHEDULE_ID" target="_blank" rel="noopener" class="bg-white text-purple-600 px-4 md:px-6 py-2.5 rounded-xl font-bold hover:scale-105 transition-transform text-sm md:text-base whitespace-nowrap shadow-lg">
+      Book Call
+    </a>
   </div>
 </div>
+
+<!-- Analytics Placeholders -->
+<!-- Google Analytics 4 - Replace G-XXXXXXXXXX with your GA4 Measurement ID -->
+<!--
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+-->
+
+<!-- Facebook Pixel - Replace PIXEL_ID with your Facebook Pixel ID -->
+<!--
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', 'PIXEL_ID');
+  fbq('track', 'PageView');
+</script>
+<noscript>
+  <img height="1" width="1" style="display:none"
+       src="https://www.facebook.com/tr?id=PIXEL_ID&ev=PageView&noscript=1"/>
+</noscript>
+-->
 
 <!-- JSON-LD Schema -->
 <script type="application/ld+json">
@@ -460,6 +970,191 @@
 }
 </script>
 
+<!-- Privacy Policy Modal -->
+<div id="privacy-modal" class="modal items-center justify-center">
+  <div class="modal-content bg-white rounded-2xl shadow-2xl max-w-3xl w-full m-4 max-h-[90vh] flex flex-col">
+    <div class="p-6 border-b flex justify-between items-center">
+      <h2 class="text-2xl font-bold">Privacy Policy</h2>
+      <button id="close-privacy-modal" class="text-gray-500 hover:text-gray-800 text-3xl">&times;</button>
+    </div>
+    <div class="p-6 md:p-8 overflow-y-auto space-y-4 text-gray-700 leading-relaxed">
+      <p class="text-sm text-gray-500">Last updated: 11/27/2025</p>
+      <p>At SocialGrowth, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website.</p>
+      
+      <h3 class="text-xl font-semibold pt-2">Information We Collect</h3>
+      <p>We collect information that you provide directly to us when you fill out the audit form on our website, book a call, or communicate with us. The types of personal information we may collect include:</p>
+      <ul class="list-disc list-inside space-y-1">
+        <li>Name and email address</li>
+        <li>LinkedIn Profile URL and X (Twitter) Handle</li>
+        <li>Your selection of platforms for management</li>
+      </ul>
+
+      <h3 class="text-xl font-semibold pt-2">How We Use Your Information</h3>
+      <p>We use the information we collect to:</p>
+      <ul class="list-disc list-inside space-y-1">
+        <li>Provide you with your free profile audit.</li>
+        <li>Respond to your inquiries and provide customer support.</li>
+        <li>Send you updates about our services and industry insights (you can opt-out anytime).</li>
+        <li>Improve our website and service offerings.</li>
+      </ul>
+
+      <h3 class="text-xl font-semibold pt-2">Cookies and Tracking Technologies</h3>
+      <p>We use cookies and similar tracking technologies to track activity on our website for analytics purposes. You can instruct your browser to refuse all cookies, though some parts of our site may not function as a result.</p>
+
+      <h3 class="text-xl font-semibold pt-2">Data Security</h3>
+      <p>We implement appropriate technical measures, including the spam and bot protections on our forms, to protect your personal information. However, no method of transmission over the Internet is 100% secure.</p>
+
+      <h3 class="text-xl font-semibold pt-2">Third-Party Services</h3>
+      <p>We use third-party services to facilitate our business, including Google Calendar for appointment scheduling. These third parties have access to your personal information only to perform specific tasks on our behalf and are obligated not to disclose it.</p>
+
+      <h3 class="text-xl font-semibold pt-2">Your Data Rights</h3>
+      <p>You have the right to access, correct, or request deletion of your personal information. To do so, please contact us.</p>
+
+      <h3 class="text-xl font-semibold pt-2">Changes to This Privacy Policy</h3>
+      <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page.</p>
+
+      <h3 class="text-xl font-semibold pt-2">Contact Us</h3>
+      <p>If you have any questions, please contact us at <a href="mailto:privacy@socialgrowth.com" class="text-purple-600 hover:underline">privacy@socialgrowth.com</a>.</p>
+    </div>
+    <div class="p-4 bg-gray-50 border-t text-right">
+        <button id="close-privacy-modal-button" class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-6 py-2 rounded-lg font-semibold transition">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Terms of Service Modal -->
+<div id="terms-modal" class="modal items-center justify-center">
+  <div class="modal-content bg-white rounded-2xl shadow-2xl max-w-3xl w-full m-4 max-h-[90vh] flex flex-col">
+    <div class="p-6 border-b flex justify-between items-center">
+      <h2 class="text-2xl font-bold">Terms of Service</h2>
+      <button id="close-terms-modal" class="text-gray-500 hover:text-gray-800 text-3xl">&times;</button>
+    </div>
+    <div class="p-6 md:p-8 overflow-y-auto space-y-4 text-gray-700 leading-relaxed">
+        <p class="text-sm text-gray-500">Last updated: 11/27/2025</p>
+        <p>Welcome to SocialGrowth. By accessing or using our website and services, you agree to be bound by these Terms of Service.</p>
+
+        <h3 class="text-xl font-semibold pt-2">1. Services Description</h3>
+        <p>SocialGrowth provides social media management services for LinkedIn and X (Twitter), including content creation (writing, design), scheduling, and engagement (comment and DM replies) to enhance your professional online presence.</p>
+
+        <h3 class="text-xl font-semibold pt-2">2. Service Engagement</h3>
+        <p>Free profile audits and discovery calls are informational and do not constitute a commitment to provide services. Formal service engagements require a separate written agreement outlining the scope of work, deliverables, and payment terms.</p>
+
+        <h3 class="text-xl font-semibold pt-2">3. Confidentiality</h3>
+        <p>We treat all client information with strict confidentiality. We will not disclose any proprietary information shared during our engagement without your explicit permission, except as required by law.</p>
+
+        <h3 class="text-xl font-semibold pt-2">4. Intellectual Property</h3>
+        <p>You retain ownership of all pre-existing materials provided to us. All content, graphics, and deliverables created specifically for you during a paid engagement become your property upon full payment. We retain ownership of our internal methodologies and tools.</p>
+
+        <h3 class="text-xl font-semibold pt-2">5. Limitation of Liability</h3>
+        <p>SocialGrowth shall not be liable for any indirect, incidental, or consequential damages, or loss of profits or data. Our total liability shall not exceed the fees paid for the specific service period in question. We do not guarantee specific business results or lead counts but strive to deliver high-quality, professional social media management.</p>
+
+        <h3 class="text-xl font-semibold pt-2">6. Termination</h3>
+        <p>Service agreements can be terminated by either party with written notice, as specified in the individual agreement. Upon termination, all outstanding fees become due, and confidentiality obligations continue indefinitely.</p>
+
+        <h3 class="text-xl font-semibold pt-2">7. Modifications to Terms</h3>
+        <p>We reserve the right to modify these terms at any time. Changes will be effective immediately upon posting. Your continued use of our services after changes constitutes acceptance of the modified terms.</p>
+
+        <h3 class="text-xl font-semibold pt-2">8. Governing Law</h3>
+        <p>These Terms shall be governed by and construed in accordance with applicable laws.</p>
+
+        <h3 class="text-xl font-semibold pt-2">Contact Us</h3>
+        <p>For questions about these Terms of Service, please contact us at <a href="mailto:terms@socialgrowth.com" class="text-purple-600 hover:underline">terms@socialgrowth.com</a>.</p>
+    </div>
+    <div class="p-4 bg-gray-50 border-t text-right">
+        <button id="close-terms-modal-button" class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-6 py-2 rounded-lg font-semibold transition">Close</button>
+    </div>
+  </div>
+</div>
+
 <script src="script.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Modal functionality
+    const privacyModal = document.getElementById('privacy-modal');
+    const termsModal = document.getElementById('terms-modal');
+
+    const openPrivacyButton = document.getElementById('open-privacy-policy');
+    const openTermsButton = document.getElementById('open-terms-of-service');
+
+    const closePrivacyButtons = [document.getElementById('close-privacy-modal'), document.getElementById('close-privacy-modal-button')];
+    const closeTermsButtons = [document.getElementById('close-terms-modal'), document.getElementById('close-terms-modal-button')];
+
+    openPrivacyButton.addEventListener('click', (e) => { e.preventDefault(); privacyModal.classList.add('active'); });
+    openTermsButton.addEventListener('click', (e) => { e.preventDefault(); termsModal.classList.add('active'); });
+
+    closePrivacyButtons.forEach(btn => btn.addEventListener('click', () => privacyModal.classList.remove('active')));
+    closeTermsButtons.forEach(btn => btn.addEventListener('click', () => termsModal.classList.remove('active')));
+
+    // Close modal on outside click
+    window.addEventListener('click', (e) => {
+      if (e.target === privacyModal) privacyModal.classList.remove('active');
+      if (e.target === termsModal) termsModal.classList.remove('active');
+    });
+
+    // Close with escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        privacyModal.classList.remove('active');
+        termsModal.classList.remove('active');
+      }
+    });
+
+
+    const auditForm = document.getElementById('audit-form');
+    const formMessage = document.getElementById('audit-form-message');
+    const submitButton = auditForm.querySelector('button[type="submit"]');
+    const formStartTs = Date.now();
+
+    auditForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      
+      const originalButtonText = submitButton.innerHTML;
+      submitButton.disabled = true;
+      submitButton.innerHTML = 'Submitting...';
+      formMessage.innerHTML = '';
+
+      const formData = new FormData(auditForm);
+      const data = Object.fromEntries(formData.entries());
+
+      // Combine LinkedIn and X handles into the message field
+      const userMessage = `Platforms selected: ${data.platforms}.\nLinkedIn: ${data.linkedin_url || 'Not provided'}.\nX Handle: ${data.x_handle || 'Not provided'}.`;
+
+      const payload = {
+        name: data.name,
+        email: data.email,
+        industry: 'Profile Audit Request',
+        message: userMessage,
+        page_url: window.location.href,
+        utm: new URLSearchParams(window.location.search).toString(),
+        form_start_ts: formStartTs,
+        hp_field: data.hp_field,
+      };
+
+      try {
+        const response = await fetch('http://localhost:3001/api/submissions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload),
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          formMessage.innerHTML = `<p class="text-green-600 font-semibold">✅ Success! We'll email your audit within 48 hours.</p>`;
+          auditForm.reset();
+        } else {
+          throw new Error(result.error || 'An unknown error occurred.');
+        }
+      } catch (error) {
+        formMessage.innerHTML = `<p class="text-red-600 font-semibold">❌ Error: ${error.message}</p>`;
+      } finally {
+        submitButton.disabled = false;
+        submitButton.innerHTML = originalButtonText;
+      }
+    });
+  });
+</script>
 </body>
 </html>
