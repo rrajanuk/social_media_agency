@@ -55,11 +55,13 @@ jobs:
             if [ ! -f .env ]; then
               echo "Creating .env from template..."
               cp .env.example .env
-              # Set required environment variables
-              sed -i "s/ADMIN_API_KEY=.*/ADMIN_API_KEY=${{ secrets.ADMIN_API_KEY }}/" .env
-              sed -i "s/NODE_ENV=.*/NODE_ENV=production/" .env
-              echo ".env created successfully"
+              echo ".env created"
             fi
+            
+            # Always update secrets (whether .env existed or not)
+            sed -i "s/ADMIN_API_KEY=.*/ADMIN_API_KEY=${{ secrets.ADMIN_API_KEY }}/" .env
+            sed -i "s/NODE_ENV=.*/NODE_ENV=production/" .env
+            echo ".env updated with secrets"
             
             npm ci --omit=dev
             pm2 restart social-agency-api || pm2 start dist/server.js --name social-agency-api
