@@ -35,21 +35,32 @@ jobs:
           switches: -avzr --delete --exclude='backend/.env' --exclude='backend/data'
           path: .
           remote_path: /var/www/social-media-agency/
-          remote_host: 217.216.48.189
-          remote_user: root
+          remote_host: ${{ secrets.VPS_HOST }}
+          remote_user: ${{ secrets.VPS_USER }}
           remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Restart services
         uses: appleboy/ssh-action@v0.1.10
         with:
-          host: 217.216.48.189
-          username: root
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /var/www/social-media-agency
             mkdir -p backend/data && chmod 755 backend/data
             rm -rf public && mkdir public && cp -r dist/* public/
             cd backend
+            
+            # Create .env if it doesn't exist
+            if [ ! -f .env ]; then
+              echo "Creating .env from template..."
+              cp .env.example .env
+              # Set required environment variables
+              sed -i "s/ADMIN_API_KEY=.*/ADMIN_API_KEY=${{ secrets.ADMIN_API_KEY }}/" .env
+              sed -i "s/NODE_ENV=.*/NODE_ENV=production/" .env
+              echo ".env created successfully"
+            fi
+            
             npm ci --omit=dev
             pm2 restart social-agency-api || pm2 start dist/server.js --name social-agency-api
             pm2 save
