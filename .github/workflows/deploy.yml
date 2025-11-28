@@ -75,10 +75,24 @@ jobs:
             
             npm ci --omit=dev
 
+            # Debug: Show current directory and env file
+            echo "Current directory: $(pwd)"
+            echo "Checking .env file..."
+            ls -la .env
+
             # Use full paths to both PM2 and Node.js to avoid PATH issues in non-interactive shell
-            /root/.nvm/versions/node/v20.19.6/bin/pm2 resurrect
-            /root/.nvm/versions/node/v20.19.6/bin/pm2 restart social-agency-api || /root/.nvm/versions/node/v20.19.6/bin/pm2 start dist/server.js --name social-agency-api --interpreter /root/.nvm/versions/node/v20.19.6/bin/node
-            /root/.nvm/versions/node/v20.19.6/bin/pm2 save
+            echo "Starting PM2 process..."
+            /root/.nvm/versions/node/v20.19.6/bin/pm2 delete social-agency-api 2>/dev/null || true
+            /root/.nvm/versions/node/v20.19.6/bin/pm2 start dist/server.js --name social-agency-api --interpreter /root/.nvm/versions/node/v20.19.6/bin/node --cwd /var/www/social-media-agency/backend
+            /root/.nvm/versions/node/v20.19.6/bin/pm2 save --force
+            
+            # Verify PM2 started the process
+            echo "PM2 process list:"
+            /root/.nvm/versions/node/v20.19.6/bin/pm2 list
+            
+            # Show logs to verify startup
+            echo "Recent logs:"
+            /root/.nvm/versions/node/v20.19.6/bin/pm2 logs social-agency-api --lines 10 --nostream
 
             nginx -t && systemctl reload nginx
             echo "Deployed successfully at $(date)"
