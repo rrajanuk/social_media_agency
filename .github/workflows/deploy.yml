@@ -59,9 +59,19 @@ jobs:
             fi
             
             # Always update secrets (whether .env existed or not)
-            sed -i "s/ADMIN_API_KEY=.*/ADMIN_API_KEY=${{ secrets.ADMIN_API_KEY }}/" .env
+            # Use '#' as a separator in sed to avoid issues with special characters in the secret
+            sed -i "s#ADMIN_API_KEY=.*#ADMIN_API_KEY=${{ secrets.ADMIN_API_KEY }}#" .env
             sed -i "s/NODE_ENV=.*/NODE_ENV=production/" .env
-            echo ".env updated with secrets"
+            echo ".env file updated."
+
+            # Verification step
+            echo "Verifying ADMIN_API_KEY..."
+            if grep -q "your-secure-api-key-here" .env; then
+              echo "Error: ADMIN_API_KEY was not updated correctly!"
+              exit 1
+            fi
+            echo "ADMIN_API_KEY successfully updated."
+            grep 'ADMIN_API_KEY' .env
             
             npm ci --omit=dev
             pm2 restart social-agency-api || pm2 start dist/server.js --name social-agency-api
