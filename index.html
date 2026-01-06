@@ -1054,10 +1054,13 @@
     const auditForm = document.getElementById('audit-form');
     const formMessage = document.getElementById('audit-form-message');
     const submitButton = auditForm.querySelector('button[type="submit"]');
-    const formStartTs = Date.now();
+    let formStartTs = Date.now();
 
     auditForm.addEventListener('submit', async function (e) {
       e.preventDefault();
+      
+      // Reset timestamp on each submission to avoid stale timestamp issues
+      formStartTs = Date.now();
       
       const originalButtonText = submitButton.innerHTML;
       submitButton.disabled = true;
@@ -1067,7 +1070,7 @@
       const formData = new FormData(auditForm);
       const data = Object.fromEntries(formData.entries());
 
-      const userMessage = `Sermon link: ${data.sermon_url}.`;
+      const userMessage = `Sermon clip request: ${data.sermon_url || 'No URL provided'}. Ministry: ${data.name}.`;
 
       const payload = {
         name: data.name,
@@ -1079,6 +1082,8 @@
         form_start_ts: formStartTs,
         hp_field: data.hp_field,
       };
+
+      console.log('Sermon clip form submitted:', payload);
 
       try {
         const response = await fetch('/api/submissions', {
