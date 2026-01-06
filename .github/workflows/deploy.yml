@@ -16,18 +16,15 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
+          cache-dependency-path: backend/package-lock.json
 
-      - name: Install + Build
-        run: |
-          # Install and build frontend
-          npm ci
-          npm install --include=dev
-          npm run build   # Frontend at root → dist/
-          
-          # Install and build backend (needs devDeps for TypeScript)
-          cd backend
-          npm ci
-          npm run build   # Backend → backend/dist/
+      - name: Install Backend Dependencies
+        working-directory: backend
+        run: npm ci
+
+      - name: Build Backend
+        working-directory: backend
+        run: npm run build
 
       - name: Deploy to VPS
         uses: burnett01/rsync-deployments@7.0.0
@@ -48,7 +45,9 @@ jobs:
           script: |
             cd /var/www/social-media-agency
             mkdir -p backend/data && chmod 755 backend/data
-            rm -rf public && mkdir public && cp -r dist/* public/
+            rm -rf public && mkdir public
+            cp index.html script.js apple-touch-icon.svg favicon.svg public/
+            cp -r images/ public/
             cd backend
             
             # Create .env if it doesn't exist
