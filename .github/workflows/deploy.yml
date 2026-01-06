@@ -47,7 +47,14 @@ jobs:
             mkdir -p backend/data && chmod 755 backend/data
             rm -rf public && mkdir public
             cp index.html script.js apple-touch-icon.svg favicon.svg public/
-            cp -r images/ public/
+            cp -r images/ public/ || true
+            
+            # Fix nginx to serve from public/ instead of dist/
+            if grep -q 'root /var/www/social-media-agency/dist;' /etc/nginx/sites-enabled/social-media-agency 2>/dev/null; then
+              sed -i 's|root /var/www/social-media-agency/dist;|root /var/www/social-media-agency/public;|' /etc/nginx/sites-enabled/social-media-agency
+              echo "Updated nginx root to public/"
+            fi
+            
             cd backend
             
             # Create .env if it doesn't exist
