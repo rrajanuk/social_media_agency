@@ -30,12 +30,12 @@ jobs:
         uses: burnett01/rsync-deployments@7.0.0
         with:
           switches: -avzr --delete --exclude='backend/.env' --exclude='backend/data'
-          rsh: -o StrictHostKeyChecking=no
           path: .
           remote_path: /var/www/social-media-agency/
           remote_host: ${{ secrets.VPS_HOST }}
           remote_user: ${{ secrets.VPS_USER }}
           remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          rsh: -o StrictHostKeyChecking=no
 
       - name: Restart services
         uses: appleboy/ssh-action@v0.1.10
