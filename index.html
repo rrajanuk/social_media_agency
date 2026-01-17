@@ -193,7 +193,7 @@
         A quiet, consistent digital presence without adding pressure to pastors or ministry teams.
       </div>
       
-      <p class="text-lg md:text-xl mb-12 opacity-90 leading-relaxed max-w-2xl mx-auto">
+      <p class="text-lg md:text-xl mb-12 opacity-90 leading-relaxed max-w-2xl mx-auto ">
         We steward existing content carefully, so outreach remains thoughtful and sustainable.
       </p>
       
@@ -261,64 +261,66 @@
 
 <!-- Free Sermon Clip Demonstration Section -->
 <section id="sermon-clip" class="py-20 px-4 bg-gradient-to-b from-gray-50 to-white">
-  <div class="max-w-2xl mx-auto">
-    <div class="text-center mb-10">
+  <div class="max-w-3xl mx-auto">
+    <div class="text-center mb-12">
       <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
         Request a <span class="bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">Free Sample Clip</span> From Your Sermon
       </h2>
-      <p class="text-lg text-gray-600">
+      <p class="text-lg text-gray-600 mb-8">
         Share a link to an existing sermon, and we will prepare one complimentary short clip. No obligation. This is simply a clear way to see what the process would look like for your church.
       </p>
     </div>
     
-    <!-- Glass Morphism Card -->
-    <div class="glass-card rounded-3xl p-8 md:p-10">
-      <form id="audit-form" class="space-y-5">
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">Your Name</label>
-          <input 
-            type="text" 
-            name="name" 
-            required 
-            class="w-full px-4 py-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition bg-white/50"
-            placeholder="John Smith"
-          >
-        </div>
+    <!-- Contact Options Card -->
+    <div class="glass-card rounded-3xl p-10 md:p-12">
+      <h3 class="text-2xl font-bold text-center mb-8 text-gray-900">Choose Your Preferred Way to Connect</h3>
+      
+      <div class="grid md:grid-cols-2 gap-6 mb-8">
+        <!-- Email Option -->
+        <a href="mailto:hello@socialgrowth.cc?subject=Free%20Sermon%20Clip%20Request&body=Hi%2C%0A%0AI'd%20like%20to%20request%20a%20free%20sample%20clip%20from%20my%20sermon.%0A%0ASermon%20Link%3A%20%5BPaste%20your%20YouTube%2FVimeo%20link%20here%5D%0A%0AChurch%20Name%3A%20%0AYour%20Name%3A%20%0A%0AThank%20you!" 
+           class="group flex flex-col items-center justify-center p-8 bg-white border-2 border-purple-200 rounded-2xl hover:border-purple-400 hover:shadow-xl transition-all">
+          <div class="w-16 h-16 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <h4 class="text-xl font-bold text-gray-900 mb-2">Send via Email</h4>
+          <p class="text-gray-600 text-center text-sm">Drop your sermon link in an email</p>
+          <span class="mt-4 text-purple-600 font-semibold group-hover:underline">hello@socialgrowth.cc</span>
+        </a>
         
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-          <input 
-            type="email" 
-            name="email" 
-            required 
-            class="w-full px-4 py-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition bg-white/50"
-            placeholder="name@yourchurch.org"
-          >
-        </div>
- 
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">Sermon Link (YouTube, Vimeo, etc.)</label>
-          <input 
-            type="url" 
-            name="sermon_url"
-            required
-            class="w-full px-4 py-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition bg-white/50"
-            placeholder="https://youtube.com/watch?v=..."
-          >
-        </div>
-        
-        <button 
-          type="submit" 
-          class="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white py-4 rounded-xl font-bold text-lg transition shadow-lg hover:shadow-xl glow-purple">
-          Request My Free Sermon Clip
-        </button>
-        
-        <p class="text-sm text-gray-500 text-center leading-relaxed">
-          We will follow up with the clip and a brief note. No pressure.
-        </p>
-        <input type="text" name="hp_field" style="display:none" tabindex="-1" autocomplete="off">
-        <div id="audit-form-message" class="mt-4 text-center"></div>
-      </form>
+        <!-- WhatsApp Option -->
+        <a href="https://wa.me/917999838411?text=Hi%2C%20I'd%20like%20to%20request%20a%20free%20sample%20clip%20from%20my%20sermon.%20Here's%20the%20link%3A%20" 
+           target="_blank"
+           rel="noopener"
+           class="group flex flex-col items-center justify-center p-8 bg-white border-2 border-green-200 rounded-2xl hover:border-green-400 hover:shadow-xl transition-all">
+          <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+          </div>
+          <h4 class="text-xl font-bold text-gray-900 mb-2">Message on WhatsApp</h4>
+          <p class="text-gray-600 text-center text-sm">Quick chat with your sermon link</p>
+          <span class="mt-4 text-green-600 font-semibold group-hover:underline">+91 799 983 8411</span>
+        </a>
+      </div>
+      
+      <div class="text-center pt-6 border-t border-gray-200">
+        <p class="text-gray-600 mb-4">Or prefer to schedule a call?</p>
+        <a href="https://calendar.app.google/UQKeKrfvhsGTedsE9" 
+           target="_blank" 
+           rel="noopener"
+           class="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition shadow-lg hover:shadow-xl glow-purple">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+          Book a Call
+        </a>
+      </div>
+      
+      <p class="text-sm text-gray-500 text-center mt-6 leading-relaxed">
+        We will follow up with the clip and a brief note. No pressure.
+      </p>
     </div>
   </div>
 </section>
@@ -633,78 +635,49 @@
         Have Questions? <span class="bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">Let's Talk</span>
       </h2>
       <p class="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
-        Not ready to book a call yet? No problem. Send us a message and we'll get back to you within 24 hours with answers to all your questions.
+        Not ready to book a call yet? No problem. Reach out and we'll get back to you within 24 hours with answers to all your questions.
       </p>
     </div>
     
-    <!-- Glass Morphism Contact Card -->
-    <div class="glass-card rounded-3xl p-8 md:p-10 max-w-2xl mx-auto shadow-xl border border-purple-100">
-      <h3 class="text-2xl font-bold mb-6 text-center text-gray-900">Send Us a Message</h3>
-      <form id="contact-form" class="space-y-5">
-        <div>
-          <input 
-            type="text" 
-            name="name" 
-            placeholder="Your Name" 
-            required 
-            class="w-full px-4 py-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition bg-white/50"
-          >
+    <!-- Contact Options -->
+    <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+      <!-- Email -->
+      <a href="mailto:hello@socialgrowth.cc?subject=Question%20About%20Social%20Growth&body=Hi%2C%0A%0AI%20have%20a%20question%20about%20your%20service%3A%0A%0A" 
+         class="group flex flex-col items-center justify-center p-8 glass-card rounded-2xl hover:shadow-xl transition-all">
+        <div class="w-16 h-16 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
         </div>
-        <div>
-          <input 
-            type="email" 
-            name="email" 
-            placeholder="Email Address" 
-            required 
-            class="w-full px-4 py-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition bg-white/50"
-          >
+        <h4 class="text-xl font-bold text-gray-900 mb-2">Email Us</h4>
+        <p class="text-purple-600 font-semibold text-sm group-hover:underline">hello@socialgrowth.cc</p>
+      </a>
+      
+      <!-- WhatsApp -->
+      <a href="https://wa.me/917999838411?text=Hi%2C%20I%20have%20a%20question%20about%20Social%20Growth%3A%20" 
+         target="_blank"
+         rel="noopener"
+         class="group flex flex-col items-center justify-center p-8 glass-card rounded-2xl hover:shadow-xl transition-all">
+        <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+          <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
         </div>
-        <div>
-          <input 
-            type="tel" 
-            name="phone" 
-            placeholder="Phone Number (Optional)" 
-            class="w-full px-4 py-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition bg-white/50"
-          >
-        </div>
-        <div>
-          <textarea 
-            name="message" 
-            placeholder="What would you like to know?" 
-            rows="4" 
-            required 
-            class="w-full px-4 py-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition bg-white/50 resize-none"
-          ></textarea>
-        </div>
-        <button 
-          type="submit" 
-          class="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white py-4 rounded-xl font-bold text-lg transition shadow-lg hover:shadow-xl glow-purple"
-        >
-          Send Message
-        </button>
-      </form>
-      <p class="text-sm text-gray-500 text-center mt-6 leading-relaxed">
-        We'll respond within 24 hours • Or book a call directly for faster answers
-      </p>
-    </div>
-    
-    <!-- Alternative Contact Methods -->
-    <div class="mt-12 text-center">
-      <p class="text-gray-600 mb-4">Prefer to talk now?</p>
-      <div class="flex flex-wrap justify-center gap-4">
-        <a href="tel:+917999838411" class="inline-flex items-center gap-2 bg-white border-2 border-purple-200 text-purple-600 px-6 py-3 rounded-xl font-semibold hover:bg-purple-50 transition">
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+        <h4 class="text-xl font-bold text-gray-900 mb-2">WhatsApp</h4>
+        <p class="text-green-600 font-semibold text-sm group-hover:underline">+91 799 983 8411</p>
+      </a>
+      
+      <!-- Phone -->
+      <a href="tel:+917999838411" 
+         class="group flex flex-col items-center justify-center p-8 glass-card rounded-2xl hover:shadow-xl transition-all">
+        <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+          <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
             <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
           </svg>
-          +917999838411
-        </a>
-        <a href="#booking" class="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-3 rounded-xl font-semibold hover:from-purple-700 hover:to-indigo-700 transition shadow-lg">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-          </svg>
-          Book 15-Min Call
-        </a>
-      </div>
+        </div>
+        <h4 class="text-xl font-bold text-gray-900 mb-2">Call Us</h4>
+        <p class="text-blue-600 font-semibold text-sm group-hover:underline">+91 799 983 8411</p>
+      </a>
     </div>
   </div>
 </section>
@@ -722,7 +695,7 @@
   <div class="max-w-3xl mx-auto text-center relative z-10">
     <div class="mb-10">
       <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white">
-        Have a <span class="text-yellow-300">Conversation</span>
+        Prefer to schedule a time?
       </h2>
       <p class="text-lg text-purple-100 max-w-2xl mx-auto">
         No pressure, no sales talk. Just a chance to understand your ministry rhythm and see whether this support would be helpful.
